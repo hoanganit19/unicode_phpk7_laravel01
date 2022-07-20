@@ -1,0 +1,6 @@
+/*Style css*/
+header .menu a{
+    color: #333;
+    text-transform: uppercase;
+    font-weight: bold;
+}
