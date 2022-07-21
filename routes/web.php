@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +70,24 @@ Route::prefix('admin')->name('admin.')->middleware('admin_auth')->group(function
     //Route::get('users/add', [UsersController::class, 'create']);
 
     Route::resource('users', UsersController::class);
+
+    Route::prefix('news')->name('news.')->group(function(){
+        Route::get('/', [NewsController::class, 'index'])->name('index');
+
+        Route::get('add', [NewsController::class, 'add'])->name('add');
+
+        Route::post('add', [NewsController::class, 'postAdd']);
+    });
 });
+
+
+
+
+
+
+
+
+
 
 
 

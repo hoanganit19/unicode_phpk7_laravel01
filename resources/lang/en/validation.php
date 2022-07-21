@@ -158,6 +158,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'news' => [
+            'title' => 'Tiêu đề',
+            'content' => 'Nội dung',
+            'email' => 'Email'
+        ]
+    ],
 
 ];
