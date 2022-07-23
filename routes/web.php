@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\LearnQueryBuilderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,13 +77,11 @@ Route::prefix('admin')->name('admin.')->middleware('admin_auth')->group(function
 
         Route::get('add', [NewsController::class, 'add'])->name('add');
 
-        Route::post('add', [NewsController::class, 'postAdd']);
+        Route::post('add', [NewsController::class, 'postAdd'])->name('post-add');
     });
 });
 
-
-
-
+Route::get('query-builder', [LearnQueryBuilderController::class, 'index']);
 
 
 

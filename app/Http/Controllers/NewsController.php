@@ -21,7 +21,7 @@ class NewsController extends Controller
         $title = 'Thêm tin tức';
 
         //echo trans('validation.url');
-        return view('admin.news.add', compact(
+        return view('admin.news.add_ajax', compact(
             'title'
         ));
     }
@@ -66,8 +66,8 @@ class NewsController extends Controller
             'phone' => 'required|regex:/^0\d{9}$/',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
-            'times.start_date' => 'required',
-            'times.end_date' => 'required'
+      //      'times.start_date' => 'required',
+      //      'times.end_date' => 'required'
         ];
 
         $messages = [
@@ -89,8 +89,8 @@ class NewsController extends Controller
             'phone' => 'Số điện thoại',
             'password' => 'Nật khẩu',
             'confirm_password' => 'Xác nhận mật khẩu',
-            'times.start_date' => 'Thời gian bắt đầu',
-            'times.end_date' => 'Thời gian kết thúc'
+           // 'times.start_date' => 'Thời gian bắt đầu',
+           // 'times.end_date' => 'Thời gian kết thúc'
         ];
 
         /*
@@ -115,8 +115,16 @@ class NewsController extends Controller
 
         if ($validator->fails()){
             //return 'Không thành công';
-            return back()->withErrors($validator)->withInput();
+            //return back()->withErrors($validator)->withInput();
+            return response()->json([
+                'status' => 'errors',
+                'errors' => $validator->messages()
+            ]);
         }
+
+        return response()->json([
+            'status' => 'success'
+        ]);
 
         //Nếu validate thành công => chạy đoạn code bên dưới
     }
