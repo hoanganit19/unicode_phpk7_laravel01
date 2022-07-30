@@ -78,6 +78,10 @@ Route::prefix('admin')->name('admin.')->middleware('admin_auth')->group(function
         Route::get('add', [NewsController::class, 'add'])->name('add');
 
         Route::post('add', [NewsController::class, 'postAdd'])->name('post-add');
+
+        Route::get('edit/{id}', [NewsController::class, 'edit']);
+
+        Route::post('edit/{id}', [NewsController::class, 'postEdit']);
     });
 });
 

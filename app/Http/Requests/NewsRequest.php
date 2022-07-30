@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Rule;
+
 class NewsRequest extends FormRequest
 {
     /**
@@ -23,11 +25,14 @@ class NewsRequest extends FormRequest
      */
     public function rules()
     {
+        //dd('required|email|unique:news,email,'.$this->id);
+
         return [
             'title' => 'required|min:5|max:255',
             //'title' => ['required', 'min:5', 'max:255'],
             'content' => 'required',
-            'email' => 'required|email|unique:news,email',
+          //  'email' => 'required|email|unique:news,email,'.$this->id,
+            'email' => ['required', 'email', Rule::unique('news', 'email')->ignore($this->id)],
             'age' => 'required|integer',
             'phone' => 'required|regex:/^0\d{9}$/',
             'password' => 'required',
@@ -42,7 +47,7 @@ class NewsRequest extends FormRequest
             'required' => ':attribute bắt buộc phải nhập',
             'min' => ':attribute phải từ :min ký tự trở lên',
             'max' => ':attribute không được lớn hơn :max ký tự',
-            'unique' => ':attribute không đúng định dạng',
+            'unique' => ':attribute đã trùng trên hệ thống',
             'regex' => ':attribute không hợp lệ',
             'email' => ':attribute không hợp lệ',
             'same' => ':attribute không khớp',

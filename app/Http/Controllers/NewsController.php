@@ -128,4 +128,17 @@ class NewsController extends Controller
 
         //Nếu validate thành công => chạy đoạn code bên dưới
     }
+
+    public function edit($id){
+        $title = 'Sửa tin tức';
+
+        //echo trans('validation.url');
+        return view('admin.news.edit', compact(
+            'title'
+        ));
+    }
+
+    public function postEdit(NewsRequest $request, $id){
+
+    }
 }
